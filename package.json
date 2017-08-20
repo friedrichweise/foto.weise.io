@@ -16,7 +16,7 @@
     "gulp-sass": "^2.3.2"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "gulp sass"
   },
   "author": "friedrich",
   "license": "ISC"
