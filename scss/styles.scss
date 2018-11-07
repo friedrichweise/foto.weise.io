@@ -44,29 +44,75 @@ aside {
 section {
 	flex-grow: 2;
 }
-.group {
-	display: flex;
-	justify-content: space-between;
+
+.fotoContainer {
 	margin-bottom: 4rem;
-	@media only screen and (max-width: 600px) {
-		flex-wrap: wrap;
+	//image container for single row item
+	&--single {
+	}
+	//image container for groups
+	&--group {
+		display: flex;
+		justify-content: space-between;
+		@media only screen and (max-width: 600px) {
+			flex-wrap: wrap;
+		}
 	}
 }
+
 .foto {
-	width: 48%;
+	&--landscape {
+		width: 90%;
+		margin: 0 auto;
+		img {
+			width: 100%;
+			height: auto;
+			display: block;
+		}
+	}
+	&--square--half {
+		width: 48%;
+		img {
+			width: 100%;
+			height: auto;
+		}
+	}
 	@media only screen and (max-width: 600px) {
 		width: 100%;
+		img {
+			width: 100%;
+		}
 	}
-	img {
+	&__description {
+		opacity: 0;
+		transition: opacity ease-in 0.2s;
+
+		color: black;
 		width: 100%;
-		height: auto;
+		text-align: right;
+		margin-top: 0.5em;
+		font-size: .9rem;
+		font-weight: 600;
+		letter-spacing: -0.5px;
+	}
+	&:hover {
+		.foto__description {
+			opacity: 1;
+		}
+	}
+	&__year {
+		font-weight: 400;
+		font-size: 0.8em;
+		font-style: italic;
+		margin-left: 0.4em;
 	}
 }
+
 
 footer {
 	p {
 		color: $darkGray;
-		line-height: 150%;
+		line-height: 160%;
 		font-weight: 600;
 		font-size: 0.8em;
 	}
