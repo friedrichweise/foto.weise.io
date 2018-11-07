@@ -1,10 +1,9 @@
 <img src="bunner.png" width="100%"/>
 
-
-## foto.weise.io – selfhosted photographs
+## <a href="https://foto.weise.io/">foto.weise.io</a> – selfhosted photographs
 selfhosted feed for my photographs. a selfhosted replacement for my instagram feed.
 
-<b><a href="https://foto.weise.io/">foto.weise.io</a></b>
+
 
 #### Dev Setup
 ```
