@@ -36,7 +36,8 @@ gulp.task('bs-reload', function () {
 
 /* Prepare Browser-sync for localhost */
 gulp.task('browser-sync', function() {
-    browserSync.init(['styles/*.css', 'js/*.js'], {
+    browserSync.init(['styles/*.css', '*.html'], {
+        browser: ["google chrome"],
         server: {
             baseDir: './'
         }
