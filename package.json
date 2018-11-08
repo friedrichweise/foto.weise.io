@@ -16,7 +16,8 @@
     "gulp-sass": "^2.3.2"
   },
   "scripts": {
-    "build": "gulp sass"
+    "build": "gulp sass",
+    "dev": "gulp"
   },
   "author": "friedrich",
   "license": "ISC"
