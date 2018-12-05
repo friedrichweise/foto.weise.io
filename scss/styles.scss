@@ -1,6 +1,9 @@
 $black: black;
 $darkGray: #656565;
 
+$mobile: "only screen and (max-width:800px)";
+
+
 body {
 	margin: 0;
 	padding: 0;
@@ -13,7 +16,7 @@ body {
 .main {
 	padding: 5vh 5vw;
 	display: flex;
-	@media only screen and (max-width: 600px) {
+	@media #{$mobile} {
 		flex-wrap: wrap;
 		padding: 2vh 2vw;
 	}
@@ -25,7 +28,7 @@ a {
 }
 aside {
 	margin-right: 5%;
-	@media only screen and (max-width: 600px) {
+	@media #{$mobile} {
 		margin-bottom: 5%;
 	}
 	position: relative;
@@ -54,7 +57,7 @@ section {
 	&--group {
 		display: flex;
 		justify-content: space-between;
-		@media only screen and (max-width: 600px) {
+		@media #{$mobile} {
 			flex-wrap: wrap;
 		}
 	}
@@ -77,7 +80,7 @@ section {
 			height: auto;
 		}
 	}
-	@media only screen and (max-width: 600px) {
+	@media #{$mobile} {
 		width: 100%;
 		img {
 			width: 100%;
