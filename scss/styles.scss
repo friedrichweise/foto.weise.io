@@ -52,6 +52,8 @@ section {
 	margin-bottom: 4rem;
 	//image container for single row item
 	&--single {
+		display: flex;
+		justify-content: space-around;
 	}
 	//image container for groups
 	&--group {
@@ -75,6 +77,13 @@ section {
 	}
 	&--square--half {
 		width: 48%;
+		img {
+			width: 100%;
+			height: auto;
+		}
+	}
+	&--square--40 {
+		width: 40%;
 		img {
 			width: 100%;
 			height: auto;
