@@ -96,6 +96,7 @@ section {
 		}
 	}
 	&__description {
+		display: none;
 		opacity: 0;
 		transition: opacity ease-in 0.2s;
 

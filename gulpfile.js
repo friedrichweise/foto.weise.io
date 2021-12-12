@@ -1,53 +1,47 @@
-var gulp = require('gulp');
-var sass = require('gulp-sass');
-var prefix = require('gulp-autoprefixer');
-var cssmin = require('gulp-cssmin');
-var rename = require("gulp-rename");
-var notify = require("gulp-notify")
-var browserSync = require('browser-sync');
-var reload = browserSync.reload;
+const gulp = require('gulp');
+const sass = require('gulp-dart-sass');
+const autoprefixer = require('autoprefixer');
+const postcss = require("gulp-postcss");
+const cssnano = require("cssnano");
+const browserSync = require('browser-sync');
 
-var input = 'scss/styles.scss';
-var output = './styles/';
+const input = './scss/*.scss';
+const output = './styles';
 
-gulp.task('sass', function () {
-  return gulp
-    .src(input)
-    .pipe(sass())
-    .on('error', function (err) {
-        notify.onError({
-            title: 'Error',
-            message: '<%= error.message %>',
-        })(err);
-        this.emit('end');
-    })
-    .pipe(prefix("last 8 versions", "> 1%", "ie 8", "ie 7"))
-    .pipe(gulp.dest(output))
-    .pipe(rename({suffix: '.min'}))
-    .pipe(cssmin())
-    .pipe(gulp.dest(output))
-    .pipe(reload({stream:true}));
-});
 
-/* Reload task */
-gulp.task('bs-reload', function () {
-    browserSync.reload();
-});
+function css() {
+    return gulp
+        .src(input)
+        .pipe(sass({ outputStyle: "expanded" }))
+        .pipe(postcss([cssnano(), autoprefixer({ overrideBrowserslist: ['> 1%', 'last 8 versions', 'Firefox >= 20', 'ie >= 9'] })]))
+        .pipe(gulp.dest(output))
+}
 
-/* Prepare Browser-sync for localhost */
-gulp.task('browser-sync', function() {
-    browserSync.init(['styles/*.css', '*.html'], {
-        browser: ["google chrome"],
+
+function init(done) {
+    browserSync.init(['styles/*.css', 'index.html', 'index.de.html'], {
+        open: false,
         server: {
             baseDir: './'
         }
     });
-});
+    done();
+}
+
+function browsersyncReload(cb) {
+    browserSync.reload();
+    cb();
+}
 
 
-gulp.task('watch', function() {
-  return gulp
-    .watch(input, ['sass'])
-});
+function watchTask() {
+    console.log("Run watch")
+    gulp.watch(input, gulp.series(css, browsersyncReload));
+    gulp.watch('*.html', browsersyncReload);
+}
 
-gulp.task('default', ['sass', 'watch', 'browser-sync']);
+exports.default = gulp.series(
+    init,
+    css,
+    watchTask,
+);
